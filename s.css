@@ -101,3 +101,10 @@ h1{
 .hide{
     display: none;
 }
+.lose{
+    opacity: 0.6;
+}
+.win{
+    background-color: bisque;
+    /* opacity: 1; */
+}
