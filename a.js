@@ -25,6 +25,12 @@ const resetGame = ()=>{
     resetBtn.classList.remove("hide");
     // msg_cont.classList.add("hide");
     resetBtn.innerText = "Reset Game";
+    for(b of boxes){
+        b.classList.remove("lose");
+    }
+    for(b of boxes){
+        b.classList.remove("win");
+    }
 }
 
 resetBtn.addEventListener("click",resetGame);
@@ -61,6 +67,12 @@ const showWinner = (winner)=>{
 resetBtn.innerText = "New Game";
 }
 
+const winEffect = (a,b,c)=>{
+   a.classList.add("win");
+   b.classList.add("win");
+   c.classList.add("win");
+}
+
 const checkWinner = ()=>{
     for(let p of winPattern){
        let p1v = boxes[p[0]].innerText;   // position 1 value
@@ -69,6 +81,7 @@ const checkWinner = ()=>{
      if(p1v != "" && p2v != "" && p3v != ""){
         if(p1v === p2v && p2v === p3v){
             console.log("winner",p1v);
+            winEffect(boxes[p[0]],boxes[p[1]],boxes[p[2]]);
             showWinner(p1v);
             return true;
         }
@@ -85,6 +98,9 @@ const checkDraw = ()=>{
         }
     }
     if(draw && !checkWinner()){
+        for(b of boxes){
+            b.classList.add("lose");
+        }
         mesg.innerText = "Tie";
         resetBtn.innerText = "New Game";
     }
